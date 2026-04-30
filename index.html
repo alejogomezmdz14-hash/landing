@@ -6,384 +6,155 @@
   <title>Alejo — Agentes IA para WhatsApp en CDMX</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --green: #25D366;
-      --dark-green: #128C7E;
-      --black: #0f0f0f;
-      --gray: #6b7280;
-      --light: #f9fafb;
-      --white: #ffffff;
-    }
+    :root { --green: #25D366; --black: #0f0f0f; --gray: #6b7280; --light: #f9fafb; --white: #ffffff; }
     body { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--black); background: var(--white); }
-
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 1rem 2rem; background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(8px);
-      display: flex; justify-content: space-between; align-items: center;
-      border-bottom: 1px solid #e5e7eb;
-    }
-    .logo { font-size: 1.1rem; font-weight: 700; color: var(--black); }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1rem 2rem; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e5e7eb; }
+    .logo { font-size: 1.1rem; font-weight: 700; }
     .logo span { color: var(--green); }
-    .nav-cta {
-      background: var(--green); color: white; border: none;
-      padding: 0.5rem 1.2rem; border-radius: 999px; font-size: 0.9rem;
-      font-weight: 600; cursor: pointer; text-decoration: none;
-    }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh; display: flex; align-items: center; justify-content: center;
-      padding: 6rem 2rem 4rem;
-      background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 50%, #f0fdf4 100%);
-      text-align: center;
-    }
+    .nav-cta { background: var(--green); color: white; padding: 0.5rem 1.2rem; border-radius: 999px; font-size: 0.9rem; font-weight: 600; text-decoration: none; }
+    .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 6rem 2rem 4rem; background: linear-gradient(135deg,#f0fdf4,#fff,#f0fdf4); text-align: center; }
     .hero-inner { max-width: 700px; }
-    .badge {
-      display: inline-block; background: #dcfce7; color: #166534;
-      padding: 0.3rem 1rem; border-radius: 999px; font-size: 0.8rem;
-      font-weight: 600; margin-bottom: 1.5rem; letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-    h1 {
-      font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800;
-      line-height: 1.15; margin-bottom: 1.2rem;
-    }
+    .badge { display: inline-block; background: #dcfce7; color: #166534; padding: 0.3rem 1rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600; margin-bottom: 1.5rem; text-transform: uppercase; }
+    h1 { font-size: clamp(2rem,5vw,3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.2rem; }
     h1 span { color: var(--green); }
-    .hero-sub {
-      font-size: 1.15rem; color: var(--gray); margin-bottom: 2.5rem;
-      line-height: 1.7; max-width: 560px; margin-left: auto; margin-right: auto;
-    }
+    .hero-sub { font-size: 1.1rem; color: var(--gray); margin-bottom: 2.5rem; line-height: 1.7; max-width: 560px; margin-left: auto; margin-right: auto; }
     .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--green); color: white; padding: 0.9rem 2rem;
-      border-radius: 999px; font-size: 1rem; font-weight: 700;
-      text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
-      box-shadow: 0 4px 20px rgba(37,211,102,0.35);
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(37,211,102,0.45); }
-    .btn-secondary {
-      background: transparent; color: var(--black); padding: 0.9rem 2rem;
-      border-radius: 999px; font-size: 1rem; font-weight: 600;
-      text-decoration: none; border: 2px solid #e5e7eb;
-      transition: border-color 0.15s;
-    }
-    .btn-secondary:hover { border-color: var(--green); }
-
-    /* SOCIAL PROOF BAR */
-    .proof-bar {
-      background: var(--black); color: white; padding: 1rem 2rem;
-      text-align: center; font-size: 0.9rem;
-    }
+    .btn-primary { background: var(--green); color: white; padding: 0.9rem 2rem; border-radius: 999px; font-size: 1rem; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 20px rgba(37,211,102,0.35); }
+    .btn-secondary { background: transparent; color: var(--black); padding: 0.9rem 2rem; border-radius: 999px; font-size: 1rem; font-weight: 600; text-decoration: none; border: 2px solid #e5e7eb; }
+    .proof-bar { background: var(--black); color: white; padding: 1rem 2rem; text-align: center; font-size: 0.9rem; }
     .proof-bar span { color: var(--green); font-weight: 700; }
-
-    /* PAIN SECTION */
     .section { padding: 5rem 2rem; max-width: 1000px; margin: 0 auto; }
-    .section-label {
-      text-align: center; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--green); margin-bottom: 0.75rem;
-    }
-    .section-title {
-      text-align: center; font-size: clamp(1.6rem, 4vw, 2.4rem);
-      font-weight: 800; margin-bottom: 1rem; line-height: 1.2;
-    }
-    .section-sub {
-      text-align: center; color: var(--gray); font-size: 1.05rem;
-      max-width: 560px; margin: 0 auto 3rem; line-height: 1.6;
-    }
-
-    .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
-    .pain-card {
-      background: #fff5f5; border: 1px solid #fee2e2; border-radius: 16px;
-      padding: 1.5rem; display: flex; gap: 1rem; align-items: flex-start;
-    }
+    .section-label { text-align: center; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 0.75rem; }
+    .section-title { text-align: center; font-size: clamp(1.6rem,4vw,2.4rem); font-weight: 800; margin-bottom: 1rem; }
+    .section-sub { text-align: center; color: var(--gray); font-size: 1.05rem; max-width: 560px; margin: 0 auto 3rem; line-height: 1.6; }
+    .pain-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 1.5rem; }
+    .pain-card { background: #fff5f5; border: 1px solid #fee2e2; border-radius: 16px; padding: 1.5rem; display: flex; gap: 1rem; }
     .pain-icon { font-size: 1.8rem; flex-shrink: 0; }
     .pain-text { font-size: 0.95rem; color: #374151; line-height: 1.5; }
     .pain-text strong { display: block; margin-bottom: 0.3rem; color: var(--black); }
-
-    /* HOW IT WORKS */
     .how-bg { background: var(--light); }
-    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 2rem; }
     .step { text-align: center; }
-    .step-num {
-      width: 52px; height: 52px; border-radius: 50%;
-      background: var(--green); color: white; font-size: 1.3rem; font-weight: 800;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1rem;
-    }
+    .step-num { width: 52px; height: 52px; border-radius: 50%; background: var(--green); color: white; font-size: 1.3rem; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
     .step h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
     .step p { color: var(--gray); font-size: 0.9rem; line-height: 1.5; }
-
-    /* WHAT YOU GET */
-    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-    .feature-card {
-      background: white; border: 1px solid #e5e7eb; border-radius: 16px;
-      padding: 1.5rem; transition: box-shadow 0.2s;
-    }
-    .feature-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+    .features { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 1.5rem; }
+    .feature-card { background: white; border: 1px solid #e5e7eb; border-radius: 16px; padding: 1.5rem; }
     .feature-icon { font-size: 2rem; margin-bottom: 0.75rem; }
     .feature-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
     .feature-card p { color: var(--gray); font-size: 0.9rem; line-height: 1.5; }
-
-    /* NICHES */
     .niches { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
-    .niche-tag {
-      background: white; border: 2px solid #e5e7eb; border-radius: 999px;
-      padding: 0.5rem 1.2rem; font-size: 0.9rem; font-weight: 600;
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-
-    /* TESTIMONIALS */
-    .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-    .testimonial {
-      background: white; border: 1px solid #e5e7eb; border-radius: 16px; padding: 1.5rem;
-    }
-    .stars { color: #f59e0b; font-size: 1rem; margin-bottom: 0.75rem; }
+    .niche-tag { background: white; border: 2px solid #e5e7eb; border-radius: 999px; padding: 0.5rem 1.2rem; font-size: 0.9rem; font-weight: 600; }
+    .testimonials { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 1.5rem; }
+    .testimonial { background: white; border: 1px solid #e5e7eb; border-radius: 16px; padding: 1.5rem; }
+    .stars { color: #f59e0b; margin-bottom: 0.75rem; }
     .testimonial blockquote { font-size: 0.95rem; line-height: 1.6; color: #374151; margin-bottom: 1rem; }
     .testimonial-author { font-size: 0.85rem; font-weight: 700; }
     .testimonial-role { font-size: 0.8rem; color: var(--gray); }
-
-    /* CTA FINAL */
-    .cta-section {
-      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 100%);
-      color: white; text-align: center; padding: 5rem 2rem;
-    }
-    .cta-section h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 1rem; }
+    .cta-section { background: linear-gradient(135deg,#0f0f0f,#1a1a2e); color: white; text-align: center; padding: 5rem 2rem; }
+    .cta-section h2 { font-size: clamp(1.8rem,4vw,2.8rem); font-weight: 800; margin-bottom: 1rem; }
     .cta-section h2 span { color: var(--green); }
     .cta-section p { color: #9ca3af; font-size: 1.05rem; max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.6; }
-    .cta-wapp {
-      background: var(--green); color: white; padding: 1rem 2.5rem;
-      border-radius: 999px; font-size: 1.1rem; font-weight: 700;
-      text-decoration: none; display: inline-flex; align-items: center; gap: 0.6rem;
-      box-shadow: 0 4px 24px rgba(37,211,102,0.4);
-      transition: transform 0.15s;
-    }
-    .cta-wapp:hover { transform: scale(1.04); }
-
-    /* FOOTER */
-    footer {
-      background: var(--black); color: #6b7280;
-      text-align: center; padding: 1.5rem; font-size: 0.85rem;
-    }
-
-    /* CHAT BUBBLE DEMO */
-    .demo-box {
-      background: #e5ddd5; border-radius: 16px; padding: 1.5rem;
-      max-width: 360px; margin: 3rem auto 0; font-size: 0.9rem;
-    }
-    .bubble {
-      border-radius: 12px; padding: 0.75rem 1rem; margin-bottom: 0.75rem;
-      max-width: 85%; line-height: 1.5;
-    }
+    .cta-wapp { background: var(--green); color: white; padding: 1rem 2.5rem; border-radius: 999px; font-size: 1.1rem; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.6rem; }
+    footer { background: var(--black); color: #6b7280; text-align: center; padding: 1.5rem; font-size: 0.85rem; }
+    .demo-box { background: #e5ddd5; border-radius: 16px; padding: 1.5rem; max-width: 360px; margin: 3rem auto 0; font-size: 0.9rem; }
+    .bubble { border-radius: 12px; padding: 0.75rem 1rem; margin-bottom: 0.75rem; max-width: 85%; line-height: 1.5; }
     .bubble-in { background: white; margin-right: auto; }
     .bubble-out { background: #dcf8c6; margin-left: auto; }
     .bubble-time { font-size: 0.7rem; color: #999; text-align: right; margin-top: 0.2rem; }
-    .demo-label { text-align: center; color: var(--gray); font-size: 0.8rem; margin-bottom: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+    .demo-label { text-align: center; color: var(--gray); font-size: 0.8rem; margin-bottom: 1rem; font-weight: 600; text-transform: uppercase; }
   </style>
 </head>
 <body>
-
-<!-- NAV -->
 <nav>
   <div class="logo">Alejo<span>IA</span></div>
-  <a href="#contacto" class="nav-cta">Agendar llamada</a>
+  <a href="https://cal.com/alejo-gomez-qeba1g/consultoria-hiq" class="nav-cta" target="_blank">Agendar llamada</a>
 </nav>
-
-<!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="badge">🤖 Inteligencia Artificial para tu negocio</div>
+    <div class="badge">Inteligencia Artificial para tu negocio</div>
     <h1>Tu negocio responde solo<br/>en <span>WhatsApp</span>, 24/7</h1>
-    <p class="hero-sub">
-      Instalamos un agente de IA en tu WhatsApp que atiende clientes, agenda citas y califica leads automáticamente — sin que tengas que estar pendiente del celular.
-    </p>
+    <p class="hero-sub">Instalamos un agente de IA en tu WhatsApp que atiende clientes, agenda citas y califica leads automaticamente, sin que tengas que estar pendiente del celular.</p>
     <div class="hero-btns">
-      <a href="#contacto" class="btn-primary">
-        <span>💬</span> Quiero una demo gratis
-      </a>
-      <a href="#como-funciona" class="btn-secondary">Ver cómo funciona</a>
+      <a href="https://cal.com/alejo-gomez-qeba1g/consultoria-hiq" class="btn-primary" target="_blank">Quiero una demo gratis</a>
+      <a href="#como-funciona" class="btn-secondary">Ver como funciona</a>
     </div>
-
-    <!-- Demo visual -->
     <div class="demo-box">
-      <div class="demo-label">Así se ve en acción</div>
-      <div class="bubble bubble-in">Hola, ¿cuánto cuesta un departamento de 2 recámaras en Condesa? 🏠</div>
-      <div class="bubble bubble-out">
-        ¡Hola! Claro, tenemos opciones desde $3.2M en Condesa.
-        ¿Buscas compra o renta? 😊
-        <div class="bubble-time">✓✓</div>
-      </div>
-      <div class="bubble bubble-in">Renta, preferible con estacionamiento</div>
-      <div class="bubble bubble-out">
-        Perfecto. Tengo 3 opciones disponibles. ¿Te puedo agendar una visita esta semana? ¿Cuándo te viene mejor?
-        <div class="bubble-time">✓✓</div>
-      </div>
-      <div class="bubble bubble-in">El jueves después de las 5pm</div>
-      <div class="bubble bubble-out">
-        ¡Listo! Quedó agendada tu visita para el jueves a las 5:30pm. Te mando la dirección ahora. 📍
-        <div class="bubble-time">✓✓</div>
-      </div>
+      <div class="demo-label">Asi se ve en accion</div>
+      <div class="bubble bubble-in">Hola, cuanto cuesta rentar en Condesa?</div>
+      <div class="bubble bubble-out">Hola! Tenemos opciones desde $18,000/mes. Buscas estudio o depa?<div class="bubble-time">visto</div></div>
+      <div class="bubble bubble-in">Depa 2 recamaras con estacionamiento</div>
+      <div class="bubble bubble-out">Tengo 3 opciones. Te agendo una visita esta semana?<div class="bubble-time">visto</div></div>
+      <div class="bubble bubble-in">El jueves despues de las 5pm</div>
+      <div class="bubble bubble-out">Listo! Visita agendada el jueves 5:30pm. Te mando la direccion ahora.<div class="bubble-time">visto</div></div>
     </div>
   </div>
 </section>
-
-<!-- PROOF BAR -->
-<div class="proof-bar">
-  Negocios en CDMX ya automatizan su WhatsApp — <span>¿cuándo es tu turno?</span>
-</div>
-
-<!-- PAIN -->
+<div class="proof-bar">Negocios en CDMX ya automatizan su WhatsApp. <span>Cuando es tu turno?</span></div>
 <section class="section">
   <p class="section-label">El problema</p>
-  <h2 class="section-title">¿Te suena familiar alguno de estos?</h2>
-  <p class="section-sub">Estos son los dolores más comunes que resolvemos para negocios en Ciudad de México.</p>
+  <h2 class="section-title">Te suena familiar alguno de estos?</h2>
+  <p class="section-sub">Estos son los dolores mas comunes que resolvemos para negocios en Ciudad de Mexico.</p>
   <div class="pain-grid">
-    <div class="pain-card">
-      <div class="pain-icon">😓</div>
-      <div class="pain-text"><strong>Pierdes leads porque no respondés a tiempo</strong>El cliente pregunta, nadie responde en 5 minutos, y se va con la competencia.</div>
-    </div>
-    <div class="pain-card">
-      <div class="pain-icon">🌙</div>
-      <div class="pain-text"><strong>Mensajes a las 11pm que nadie atiende</strong>Tu cliente potencial más serio escribió fuera de horario. No lo vas a recuperar.</div>
-    </div>
-    <div class="pain-card">
-      <div class="pain-icon">🔁</div>
-      <div class="pain-text"><strong>Siempre respondés lo mismo</strong>"¿Cuál es el precio?", "¿Tienen disponibilidad?", "¿Dónde están?" — horas de tu día perdidas.</div>
-    </div>
-    <div class="pain-card">
-      <div class="pain-icon">📱</div>
-      <div class="pain-text"><strong>No podés desconectarte nunca</strong>Si no estás con el celular en la mano, el negocio se para. Eso no es libertad.</div>
-    </div>
+    <div class="pain-card"><div class="pain-icon">😓</div><div class="pain-text"><strong>Perdes leads por no responder rapido</strong>El cliente pregunta, nadie responde en 5 min y se va con la competencia.</div></div>
+    <div class="pain-card"><div class="pain-icon">🌙</div><div class="pain-text"><strong>Mensajes de noche que nadie atiende</strong>Tu cliente potencial escribio fuera de horario. No lo vas a recuperar.</div></div>
+    <div class="pain-card"><div class="pain-icon">🔁</div><div class="pain-text"><strong>Siempre respondes lo mismo</strong>Cual es el precio, tienen disponibilidad, donde estan. Horas perdidas.</div></div>
+    <div class="pain-card"><div class="pain-icon">📱</div><div class="pain-text"><strong>No podes desconectarte nunca</strong>Si no estas con el celular, el negocio se para. Eso no es libertad.</div></div>
   </div>
 </section>
-
-<!-- HOW IT WORKS -->
 <div class="how-bg" id="como-funciona">
 <section class="section">
   <p class="section-label">El proceso</p>
-  <h2 class="section-title">En 3 pasos tenés tu agente listo</h2>
-  <p class="section-sub">Sin complicaciones técnicas de tu parte. Nosotros hacemos todo.</p>
+  <h2 class="section-title">En 3 pasos tenes tu agente listo</h2>
+  <p class="section-sub">Sin complicaciones tecnicas. Nosotros hacemos todo.</p>
   <div class="steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <h3>Llamada de diagnóstico</h3>
-      <p>En 20 minutos entendemos cómo funciona tu negocio y qué necesita automatizar tu WhatsApp.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <h3>Configuramos tu agente</h3>
-      <p>Entrenamos el agente con la información de tu negocio: precios, servicios, horarios, preguntas frecuentes.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <h3>Lo activamos y listo</h3>
-      <p>En menos de una semana tu WhatsApp ya está respondiendo solo. Vos solo revisás los leads calificados.</p>
-    </div>
+    <div class="step"><div class="step-num">1</div><h3>Llamada de diagnostico</h3><p>En 20 min entendemos tu negocio y que necesita automatizar tu WhatsApp.</p></div>
+    <div class="step"><div class="step-num">2</div><h3>Configuramos tu agente</h3><p>Lo entrenamos con tus precios, servicios, horarios y preguntas frecuentes.</p></div>
+    <div class="step"><div class="step-num">3</div><h3>Lo activamos y listo</h3><p>En menos de una semana tu WhatsApp responde solo. Vos solo revesas los leads calificados.</p></div>
   </div>
 </section>
 </div>
-
-<!-- FEATURES -->
 <section class="section">
   <p class="section-label">Lo que incluye</p>
   <h2 class="section-title">Todo lo que hace tu agente</h2>
-  <p class="section-sub">Un asistente inteligente que trabaja por vos mientras vos te enfocás en lo que importa.</p>
   <div class="features">
-    <div class="feature-card">
-      <div class="feature-icon">⚡</div>
-      <h3>Respuesta inmediata</h3>
-      <p>Contesta en segundos, a cualquier hora. Tus clientes nunca esperan y tú nunca pierdes una oportunidad.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">📅</div>
-      <h3>Agenda citas automáticamente</h3>
-      <p>El agente coordina horarios, confirma citas y manda recordatorios sin que tengas que intervenir.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🎯</div>
-      <h3>Califica tus leads</h3>
-      <p>Hace las preguntas clave para separar los clientes serios de los que solo están curioseando.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🔗</div>
-      <h3>Se conecta con tus herramientas</h3>
-      <p>Se integra con Google Calendar, tu CRM, o cualquier sistema que ya estés usando.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🧠</div>
-      <h3>Aprende de tu negocio</h3>
-      <p>Conoce tus precios, servicios, políticas y responde exactamente como lo harías tú.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">👤</div>
-      <h3>Escala a humano cuando hace falta</h3>
-      <p>Cuando el cliente necesita atención personalizada, te avisa a vos para que tomes el control.</p>
-    </div>
+    <div class="feature-card"><div class="feature-icon">⚡</div><h3>Respuesta inmediata</h3><p>Contesta en segundos, a cualquier hora. Nunca perdes una oportunidad.</p></div>
+    <div class="feature-card"><div class="feature-icon">📅</div><h3>Agenda citas automaticamente</h3><p>Coordina horarios, confirma citas y manda recordatorios solo.</p></div>
+    <div class="feature-card"><div class="feature-icon">🎯</div><h3>Califica tus leads</h3><p>Separa los clientes serios de los que solo curiosean.</p></div>
+    <div class="feature-card"><div class="feature-icon">🔗</div><h3>Se conecta con tus herramientas</h3><p>Google Calendar, CRM, o cualquier sistema que ya uses.</p></div>
+    <div class="feature-card"><div class="feature-icon">🧠</div><h3>Aprende de tu negocio</h3><p>Conoce tus precios, servicios y politicas. Responde como lo harias vos.</p></div>
+    <div class="feature-card"><div class="feature-icon">👤</div><h3>Escala a humano cuando hace falta</h3><p>Cuando el cliente necesita atencion personalizada, te avisa.</p></div>
   </div>
 </section>
-
-<!-- NICHES -->
 <div class="how-bg">
 <section class="section">
   <p class="section-label">Industrias</p>
   <h2 class="section-title">Para cualquier negocio en CDMX</h2>
-  <p class="section-sub">Ya lo implementamos en estos sectores. Si el tuyo no aparece, igual podemos ayudarte.</p>
   <div class="niches">
-    <div class="niche-tag">🏠 Inmobiliarias</div>
-    <div class="niche-tag">🏥 Clínicas y Consultorios</div>
-    <div class="niche-tag">🍕 Restaurantes</div>
-    <div class="niche-tag">🎓 Escuelas y Academias</div>
-    <div class="niche-tag">🛍️ E-commerce local</div>
-    <div class="niche-tag">💇 Salones y Spas</div>
-    <div class="niche-tag">🚗 Agencias de autos</div>
-    <div class="niche-tag">⚖️ Despachos legales</div>
-    <div class="niche-tag">💼 Contadores</div>
-    <div class="niche-tag">🏋️ Gimnasios</div>
+    <div class="niche-tag">🏠 Inmobiliarias</div><div class="niche-tag">🏥 Clinicas</div>
+    <div class="niche-tag">🍕 Restaurantes</div><div class="niche-tag">🎓 Escuelas</div>
+    <div class="niche-tag">🛍️ E-commerce</div><div class="niche-tag">💇 Salones y Spas</div>
+    <div class="niche-tag">🚗 Agencias de autos</div><div class="niche-tag">⚖️ Despachos legales</div>
+    <div class="niche-tag">💼 Contadores</div><div class="niche-tag">🏋️ Gimnasios</div>
   </div>
 </section>
 </div>
-
-<!-- TESTIMONIALS -->
 <section class="section">
   <p class="section-label">Resultados</p>
   <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-  <p class="section-sub">Negocios reales en CDMX que ya automatizaron su WhatsApp.</p>
   <div class="testimonials">
-    <div class="testimonial">
-      <div class="stars">★★★★★</div>
-      <blockquote>"Antes perdíamos clientes todos los días porque no alcanzábamos a responder. Ahora el agente lo hace solo y nosotros solo cerramos las citas. Recuperamos la inversión en el primer mes."</blockquote>
-      <div class="testimonial-author">Roberto M.</div>
-      <div class="testimonial-role">Inmobiliaria — Polanco, CDMX</div>
-    </div>
-    <div class="testimonial">
-      <div class="stars">★★★★★</div>
-      <blockquote>"Mis pacientes escriben a las 11pm y el agente los agenda al instante. Yo me entero al día siguiente con el paciente ya confirmado. Es increíble lo que ahorré en tiempo."</blockquote>
-      <div class="testimonial-author">Dra. Carmen V.</div>
-      <div class="testimonial-role">Consultorio médico — Coyoacán, CDMX</div>
-    </div>
-    <div class="testimonial">
-      <div class="stars">★★★★★</div>
-      <blockquote>"Teníamos 3 personas respondiendo WhatsApp y aun así se nos iban pedidos. Ahora el agente maneja todo, sin errores y sin descanso. Fue la mejor inversión del año."</blockquote>
-      <div class="testimonial-author">Luis A.</div>
-      <div class="testimonial-role">Restaurante — Benito Juárez, CDMX</div>
-    </div>
+    <div class="testimonial"><div class="stars">★★★★★</div><blockquote>"Antes perdiamos clientes porque no alcanzabamos a responder. Ahora el agente lo hace solo. Recuperamos la inversion en el primer mes."</blockquote><div class="testimonial-author">Roberto M.</div><div class="testimonial-role">Inmobiliaria, Polanco CDMX</div></div>
+    <div class="testimonial"><div class="stars">★★★★★</div><blockquote>"Mis pacientes escriben a las 11pm y el agente los agenda al instante. Me entero al dia siguiente con el paciente confirmado."</blockquote><div class="testimonial-author">Dra. Carmen V.</div><div class="testimonial-role">Consultorio medico, Coyoacan CDMX</div></div>
+    <div class="testimonial"><div class="stars">★★★★★</div><blockquote>"Teniamos 3 personas respondiendo WhatsApp y aun asi perdiamos pedidos. Ahora el agente maneja todo. Fue la mejor inversion del año."</blockquote><div class="testimonial-author">Luis A.</div><div class="testimonial-role">Restaurante, Benito Juarez CDMX</div></div>
   </div>
 </section>
-
-<!-- CTA FINAL -->
 <section class="cta-section" id="contacto">
-  <h2>¿Listo para que tu WhatsApp<br/><span>trabaje por vos</span>?</h2>
-  <p>Agendá una llamada de 20 minutos. Sin costo, sin compromiso. Te muestro en vivo cómo quedaría el agente para tu negocio.</p>
-  <a href="https://wa.me/521844986365?text=Hola%20Alejo%2C%20vi%20tu%20p%C3%A1gina%20y%20me%20interesa%20una%20demo%20del%20agente%20de%20WhatsApp" class="cta-wapp">
-    <span>📲</span> Escribime por WhatsApp
-  </a>
+  <h2>Listo para que tu WhatsApp<br/><span>trabaje por vos?</span></h2>
+  <p>Agenda una llamada de 20 minutos. Sin costo, sin compromiso. Te muestro en vivo como quedaria el agente para tu negocio.</p>
+  <a href="https://cal.com/alejo-gomez-qeba1g/consultoria-hiq" class="cta-wapp" target="_blank">📅 Agenda una demo gratis</a>
 </section>
-
 <footer>
-  <p>© 2025 Alejo — Ciudad de México · <a href="https://wa.me/521844986365" style="color:#25D366">WhatsApp</a></p>
+  <p>2025 Alejo, Ciudad de Mexico. <a href="https://wa.me/529844986365" style="color:#25D366">WhatsApp</a></p>
 </footer>
-
 </body>
 </html>
