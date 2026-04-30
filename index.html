@@ -55,7 +55,9 @@
     .cta-section h2 { font-size: clamp(1.8rem,4vw,2.8rem); font-weight: 800; margin-bottom: 1rem; }
     .cta-section h2 span { color: var(--green); }
     .cta-section p { color: #9ca3af; font-size: 1.05rem; max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.6; }
-    .cta-wapp { background: var(--green); color: white; padding: 1rem 2.5rem; border-radius: 999px; font-size: 1.1rem; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.6rem; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .cta-wapp { background: var(--green); color: white; padding: 1rem 2.5rem; border-radius: 999px; font-size: 1.1rem; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.6rem; box-shadow: 0 4px 24px rgba(37,211,102,0.4); }
+    .cta-cal { background: white; color: #0f0f0f; padding: 1rem 2.5rem; border-radius: 999px; font-size: 1.1rem; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.6rem; }
     footer { background: var(--black); color: #6b7280; text-align: center; padding: 1.5rem; font-size: 0.85rem; }
     .demo-box { background: #e5ddd5; border-radius: 16px; padding: 1.5rem; max-width: 360px; margin: 3rem auto 0; font-size: 0.9rem; }
     .bubble { border-radius: 12px; padding: 0.75rem 1rem; margin-bottom: 0.75rem; max-width: 85%; line-height: 1.5; }
@@ -110,7 +112,7 @@
   <div class="steps">
     <div class="step"><div class="step-num">1</div><h3>Llamada de diagnostico</h3><p>En 20 min entendemos tu negocio y que necesita automatizar tu WhatsApp.</p></div>
     <div class="step"><div class="step-num">2</div><h3>Configuramos tu agente</h3><p>Lo entrenamos con tus precios, servicios, horarios y preguntas frecuentes.</p></div>
-    <div class="step"><div class="step-num">3</div><h3>Lo activamos y listo</h3><p>En menos de una semana tu WhatsApp responde solo. Vos solo revesas los leads calificados.</p></div>
+    <div class="step"><div class="step-num">3</div><h3>Lo activamos y listo</h3><p>En menos de una semana tu WhatsApp responde solo. Vos solo revisas los leads calificados.</p></div>
   </div>
 </section>
 </div>
@@ -145,16 +147,19 @@
   <div class="testimonials">
     <div class="testimonial"><div class="stars">★★★★★</div><blockquote>"Antes perdiamos clientes porque no alcanzabamos a responder. Ahora el agente lo hace solo. Recuperamos la inversion en el primer mes."</blockquote><div class="testimonial-author">Roberto M.</div><div class="testimonial-role">Inmobiliaria, Polanco CDMX</div></div>
     <div class="testimonial"><div class="stars">★★★★★</div><blockquote>"Mis pacientes escriben a las 11pm y el agente los agenda al instante. Me entero al dia siguiente con el paciente confirmado."</blockquote><div class="testimonial-author">Dra. Carmen V.</div><div class="testimonial-role">Consultorio medico, Coyoacan CDMX</div></div>
-    <div class="testimonial"><div class="stars">★★★★★</div><blockquote>"Teniamos 3 personas respondiendo WhatsApp y aun asi perdiamos pedidos. Ahora el agente maneja todo. Fue la mejor inversion del año."</blockquote><div class="testimonial-author">Luis A.</div><div class="testimonial-role">Restaurante, Benito Juarez CDMX</div></div>
+    <div class="testimonial"><div class="stars">★★★★★</div><blockquote>"Teniamos 3 personas respondiendo WhatsApp y aun asi perdiamos pedidos. Ahora el agente maneja todo. Fue la mejor inversion del anio."</blockquote><div class="testimonial-author">Luis A.</div><div class="testimonial-role">Restaurante, Benito Juarez CDMX</div></div>
   </div>
 </section>
 <section class="cta-section" id="contacto">
   <h2>Listo para que tu WhatsApp<br/><span>trabaje por vos?</span></h2>
-  <p>Agenda una llamada de 20 minutos. Sin costo, sin compromiso. Te muestro en vivo como quedaria el agente para tu negocio.</p>
-  <a href="https://cal.com/alejo-gomez-qeba1g/consultoria-hiq" class="cta-wapp" target="_blank">📅 Agenda una demo gratis</a>
+  <p>Agenda una llamada o escribime directo. Sin costo, sin compromiso.</p>
+  <div class="cta-btns">
+    <a href="https://cal.com/alejo-gomez-qeba1g/consultoria-hiq" class="cta-cal" target="_blank">📅 Agenda una demo</a>
+    <a href="https://wa.me/529844986365?text=Hola%20Alejo%2C%20vi%20tu%20pagina%20y%20me%20interesa%20el%20agente%20de%20WhatsApp" class="cta-wapp" target="_blank">💬 Escribime por WhatsApp</a>
+  </div>
 </section>
 <footer>
-  <p>2025 Alejo, Ciudad de Mexico. <a href="https://wa.me/529844986365" style="color:#25D366">WhatsApp</a></p>
+  <p>2025 Alejo, Ciudad de Mexico.</p>
 </footer>
 </body>
 </html>
